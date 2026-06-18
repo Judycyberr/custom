@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="sale_order_task_form_view" model="ir.ui.view">
+        <field name="name">Sale Order Task</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <header>
+                    <button name="action_task" type="object" string="Create Tasks" class="btn-primary" invisible="is_project == False or flag == True"/>
+            </header>
+            <div name="button_box" position="inside">
+               <button class="oe_stat_button" name="action_view_task" type="object" icon="fa-pencil-square-o"  invisible="state != 'sale' and state !='cancel'">
+                   <div class="o_field_widget o_stat_info" style="width:70px">
+                        <span class="o_stat_text">Sub-tasks</span>
+                        <span class="o_stat_text">
+                            <field name="subtask_count"/>
+                        </span>
+                   </div>
+               </button>
+            </div>
+            <xpath expr="//field[@name='payment_term_id']" position="after">
+                <field name="project_id" domain="[('id', 'in', project_ids)]"/>
+<!--                <field name="task_ids" context="{'sale_order_id': id}" />-->
+            </xpath>
+        </field>
+    </record>
+
+    <record id="sale_order_task" model="ir.actions.act_window">
+        <field name="name">Sale Order Task</field>
+        <field name="res_model">sale.order</field>
+        <field name="views">form,list</field>
+        <field name="view_mode">list,kanban,form</field>
+    </record>
+</odoo>
