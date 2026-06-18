@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="project_management_menu_root" name="Project Management">
+
+        <menuitem id="project_management_first_level_menu" name="Project">
+            <menuitem id="task_menu_action" name="Task" action="project_management_project_task"/>
+            <menuitem id="task_type_menu_action" name="Task Type" action="project_management_project_task_type"/>
+        </menuitem>
+    </menuitem>
+</odoo>

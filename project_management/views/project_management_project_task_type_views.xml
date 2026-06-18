@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="project_management_project_task_type_edit_view" model="ir.ui.view">
+        <field name="name">Project Task Type</field>
+        <field name="model">project.task.type</field>
+        <field name="inherit_id" ref="project.task_type_edit"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='sequence']" position="after">
+                <field name="default_duration"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="project_management_project_task_type" model="ir.actions.act_window">
+        <field name="name">Project Task Type</field>
+        <field name="res_model">project.task.type</field>
+        <field name="views">form,list</field>
+    </record>
+</odoo>

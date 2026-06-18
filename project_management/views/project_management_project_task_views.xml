@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="project_management_project_task" model="ir.actions.act_window">
+        <field name="name">Project Task</field>
+        <field name="res_model">project.task</field>
+        <field name="views">form,list</field>
+        <field name="view_mode">kanban,list</field>
+    </record>
+</odoo>
