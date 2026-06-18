@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="mail_template_check_out" model="mail.template">
+        <field name="name">Sale Order Email Demo Template</field>
+        <field name="model_id" ref="hotel_management.model_hotel_accommodation"/>
+        <field name="email_from">{{ object.company_id.email }}</field>
+        <field name="email_to">{{ object.partner_id.email }}</field>
+        <field name="subject">Check Out {{ object.number }}</field>
+        <field name="body_html" type="html">
+            <div style="font-family: Arial, sans-serif; font-size: 14px; color: #333;">
+                <p>Dear
+                    <strong>
+                        <t t-out="object.partner_id.name"/>
+                    </strong>
+                </p>
+                <p>
+                    Thank you ! Hope u enjoyed ur stay!
+                </p>
+                <p>
+                    Please feel free to contact us if you have any questions about your checkout
+                </p>
+                <p>Best Regards</p>
+                <p>
+                    <strong>
+                        <t t-out="object.company_id.name"/>
+                    </strong>
+                </p>
+            </div>
+        </field>
+    </record>
+</odoo>

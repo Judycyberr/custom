@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record id="food_item_1" model="hotel.food.items">
+            <field name="name">Burger</field>
+            <field name="item">Burger</field>
+            <field name="category_id" ref="food_category_2"/>
+            <field name="price">16</field>
+        </record>
+
+        <record id="food_item_2" model="hotel.food.items">
+            <field name="name">Ramen</field>
+            <field name="item">Ramen</field>
+            <field name="category_id" ref="food_category_2"/>
+            <field name="price">25</field>
+        </record>
+
+        <record id="food_item_3" model="hotel.food.items">
+            <field name="name">Pista</field>
+            <field name="item">Drink</field>
+            <field name="category_id" ref="food_category_6"/>
+            <field name="price">5</field>
+        </record>
+    </data>
+</odoo>

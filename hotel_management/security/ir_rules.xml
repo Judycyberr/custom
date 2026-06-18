@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+
+    <!-- Multi - Company Rules -->
+    <record id="hotel_accommodation_company_rule" model="ir.rule">
+        <field name="name">Accommodation Multi Company</field>
+        <field name="model_id" ref="model_hotel_accommodation"/>
+        <field name="domain_force">[('company_id', 'in', company_ids + [False])]</field>
+    </record>
+
+    <record id="hotel_rooms_company_rule" model="ir.rule">
+        <field name="name">Rooms Multi Company</field>
+        <field name="model_id" ref="model_hotel_rooms"/>
+        <field name="domain_force">[('company_id', 'in', company_ids + [False])]</field>
+    </record>
+
+    <record id="hotel_order_food_company_rule" model="ir.rule">
+        <field name="name">Order Food Multi Company</field>
+        <field name="model_id" ref="model_hotel_order_food"/>
+        <field name="domain_force">[('company_id', 'in', company_ids + [False])]</field>
+    </record>
+
+    <record id="hotel_facility_company_rule" model="ir.rule">
+        <field name="name">Facility Multi Company</field>
+        <field name="model_id" ref="model_hotel_facility"/>
+        <field name="domain_force">[('company_id', 'in', company_ids + [False])]</field>
+    </record>
+
+    <record id="hotel_food_category_company_rule" model="ir.rule">
+        <field name="name">Food Category Multi Company</field>
+        <field name="model_id" ref="model_hotel_food_category"/>
+        <field name="domain_force">[('company_id', 'in', company_ids + [False])]</field>
+    </record>
+    
+    <record id="hotel_order_list_company_rule" model="ir.rule">
+        <field name="name">Order List Multi Company</field>
+        <field name="model_id" ref="model_hotel_order_list"/>
+        <field name="domain_force">[('company_id', 'in', company_ids + [False])]</field>
+    </record>
+
+    <record id="hotel_payment_lines_company_rule" model="ir.rule">
+        <field name="name">Payment Lines Multi Company</field>
+        <field name="model_id" ref="model_hotel_payment_lines"/>
+        <field name="domain_force">[('company_id', 'in', company_ids + [False])]</field>
+    </record>
+
+</odoo>

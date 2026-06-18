@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="hotel_accommodation_list_view" model="ir.ui.view">
+        <field name="name">Accommodation</field>
+        <field name="model">hotel.accommodation</field>
+        <field name="arch" type="xml">
+            <list string="List" default_order="check_in desc"
+                  decoration-warning="expected_date == current_date"
+                  decoration-danger="expected_date == current_date and state != 'check_out'"
+            >
+                <field name="number"/>
+                <field name="partner_id"/>
+                <field name="check_in"/>
+                <field name="check_out"/>
+                <field name="room_id"/>
+                <field name="expected_date" invisible="expected_date != current_date"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="hotel_accommodation_form_view" model="ir.ui.view">
+        <field name="name">Accommodation</field>
+        <field name="model">hotel.accommodation</field>
+        <field name="arch" type="xml">
+            <form string="form">
+                <header>
+                    <button  name="action_check_in" type="object" string="Check In" class="btn-primary" invisible="state not in['draft']"/>
+                    <button name="action_check_out" type="object" string="Check Out" class="btn-primary" invisible="state not in['check_in']"/>
+                    <button name="action_cancel" type="object" string="Cancel" invisible="state in['check_out']"/>
+                    <field name="state" widget="statusbar" statusbra_visible="draft,check_in,check_out_,cancel"/>
+                </header>
+                <sheet>
+                    <widget name="web_ribbon" title="Paid" bg_color="text-bg-success" invisible="payment != 'paid'"/>
+                    <div name="button_box" position="inside">
+                       <button class="oe_stat_button" name="action_view_invoice" type="object" icon="fa-pencil-square-o"  invisible="state != 'check_out'">Invoices</button>
+                        <button class="oe_stat_button" name="action_view_invoice_cafe" type="object" icon="fa-pagelines">
+                             <field name="cafe_count" widget="statinfo" string="Food Consumed"/>
+                        </button>
+                    </div>
+                    <h1>
+                        <field name="number"/>
+                    </h1>
+                    <group name="hotel_accommodation_header">
+                        <group name="customer_details">
+                                <field name="partner_id" context="{'show_address': True}"/>
+                                <field name="no_guest"/>
+                                <field name="bed_type" string="Bed Type"/>
+                                <field name="facility_ids" widget="many2many_tags" options="{'no_quick_create' : True,'no_create_edit' : True, 'no_create' : True }"/>
+                                <field name="room_id" options="{'no_quick_create' : True,'no_create_edit' : True, 'no_create' : True } " domain="[('id', 'in', room_ids), ('state', '=', 'available')]"/>
+                        </group>
+                        <group name="other_details">
+                            <field name="check_in"/>
+                            <field name="expected_days" invisible="state not in['draft','check_in']"/>
+                            <field name="expected_date" invisible="state not in['draft','check_in']"/>
+                            <field name="rent"/>
+                            <field name="check_out"/>
+                            <field name="attachment_ids" invisible="True"/>
+                           </group>
+                    </group>
+                    <notebook>
+                        <page string="Guest Information">
+                            <field name="guest_ids"/>
+                        </page>
+                        <page string="Payments">
+                            <field name="service_product_ids">
+                            </field>
+                            <group>
+                                <group class="oe_subtotal_footer">
+                                    <field name="rent_sub_total" string="Rent sub Total: "/>
+                                    <field name="item_total" string="Food sub total: "/>
+                                    <field name="total" string="Total: "/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Description">
+                            <group>
+                                <field name="description"/>
+                            </group>
+                        </page>
+
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="hotel_accommodation_search_view" model="ir.ui.view">
+        <field name="name">Hotel Accommodation</field>
+        <field name="model">hotel.accommodation</field>
+        <field name="arch" type="xml">
+            <search string="Bed Type">
+                <field name="room_id"/>
+<!--                <field name="acc_guest_name_id" string="Guest"/>-->
+                <field name="number" string="Sequence"/>
+                <filter string="Room" name="room_id" context="{'group_by':'room_id'}"/>
+                <filter string="Type" name="acc_room_type" context="{'group_by':'acc_room_type'}"/>
+                <filter string="State" name="acc_room_state" context="{'group_by':'acc_room_state'}"/>
+                <filter string="Check-in" name="state" domain="[('state', '=', 'check_in')]"/>
+                <filter string="Current-day checkouts" name="check_out" domain="[('check_out','&lt;',time.strftime('%%Y-%%m-%%d 23:59:59')),('check_out','>=',(datetime.date.today()-datetime.timedelta(hours=24)).strftime('%%Y-%%m-%%d 00:00:00'))]"/>
+                <filter string="Next-day expected checkouts" name="expected_date" domain="[('expected_days', '=', 1),('state', '!=', 'check_out')]"/>
+                <filter string="Archive" name="active" domain="[('active', '=', False)]"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="hotel_accommodation" model="ir.actions.act_window">
+        <field name="name">Accommodation</field>
+        <field name="res_model">hotel.accommodation</field>
+        <field name="views">form,list</field>
+    </record>
+</odoo>

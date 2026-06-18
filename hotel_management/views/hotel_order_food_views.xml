@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="hotel_order_food_list_view" model="ir.ui.view">
+        <field name="name">Hotel Order Food</field>
+        <field name="model">hotel.order.food</field>
+        <field name="arch" type="xml">
+            <list string="List">
+                <field name="name"/>
+                <field name="room_id"/>
+                <field name="item_ids" widget="many2many_tags"/>
+                <field name="order_time"/>
+                <field name="item_total"/>
+<!--                <field name="product_ids"/>-->
+            </list>
+        </field>
+    </record>
+
+    <record id="hotel_order_food_form_view" model="ir.ui.view">
+        <field name="name">Hotel Order Food</field>
+        <field name="model">hotel.order.food</field>
+        <field name="arch" type="xml">
+                <form string="form">
+                    <sheet>
+                        <group name="hotel_order_food_header">
+                            <group name="order_details">
+                                <field name="accommodation_id" domain="[('state', '=', 'check_in')]" options="{'no_quick_create' : True,'no_create_edit' : True, 'no_create' : True }" style="font-size:15pt;"/>
+                                <field name="name"/>
+                                <field name="order_time"/>
+                                <field name="temp" invisible="1"/>
+<!--                                <field name="product_ids"/>-->
+                            </group>
+                            <group name="other_details">
+                                <field name="room_id" style="font-size:15pt;"/>
+                                <field name="category_ids" widget="many2many_tags" options="{'no_quick_create' : False,'no_create_edit' : True, 'no_create' : False }"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Menu">
+                                <field name="item_ids" type="object" mode="kanban" context="{'order_id': id}">
+                                </field>
+                            </page>
+
+                            <page string="Order List">
+                                <field name="order_list_ids"/>
+                                <group>
+                                    <field name="item_total" string="List total : "/>
+<!--                                    <field name="food_total_price" string="Sub total :"/>-->
+                                </group>
+                            </page>
+                            <page string="Guest Information">
+                                <field name="guest_ids"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+        </field>
+    </record>
+
+    <record id="hotel_order_food" model="ir.actions.act_window">
+        <field name="name">Hotel Order Food</field>
+        <field name="res_model">hotel.order.food</field>
+        <field name="views">form,list</field>
+    </record>
+</odoo>

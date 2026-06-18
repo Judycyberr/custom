@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record id="food_category_1" model="hotel.food.category">
+            <field name="name">Hot Drinks</field>
+        </record>
+
+        <record id="food_category_2" model="hotel.food.category">
+            <field name="name">Lunch</field>
+        </record>
+
+        <record id="food_category_3" model="hotel.food.category">
+            <field name="name">Dinner</field>
+        </record>
+
+        <record id="food_category_4" model="hotel.food.category">
+            <field name="name">Breakfast</field>
+        </record>
+
+        <record id="food_category_5" model="hotel.food.category">
+            <field name="name">Dessert</field>
+        </record>
+
+        <record id="food_category_6" model="hotel.food.category">
+            <field name="name">Cool Drinks</field>
+        </record>
+
+    </data>
+</odoo>

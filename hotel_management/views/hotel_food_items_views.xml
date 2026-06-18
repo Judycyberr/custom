@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="hotel_food_item_kanban_view" model="ir.ui.view">
+        <field name="name">Food Item</field>
+        <field name="model">hotel.food.items</field>
+        <field name="arch" type="xml">
+            <kanban action="action_open_item_wizard" type="object">
+                <templates>
+                    <t t-name="card" class="flex-row">
+                        <aside class="o_kanban_aside_full d-none d-md-block">
+                            <field name="image" widget="image" alt="Product Image"/>
+                        </aside>
+                        <main>
+                            <div class="d-flex">
+                                <field name="name" class="fw-bold fs-5"/>
+                                <field name="price" widget="monetary" class="fw-bold ms-auto"/>
+                            </div>
+                            <field name="category_id"/>
+                            <footer class="pt-0 mt-0">
+                                <field name="description" class="text-muted"/>
+                            </footer>
+                        </main>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="hotel_food_item_list_view" model="ir.ui.view">
+        <field name="name">Food Item</field>
+        <field name="model">hotel.food.items</field>
+        <field name="arch" type="xml">
+            <list string="List">
+                <field name="name"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="hotel_food_item_form_view" model="ir.ui.view">
+        <field name="name">Food Items</field>
+        <field name="model">hotel.food.items</field>
+        <field name="arch" type="xml">
+            <form string="form">
+                <sheet>
+                    <group>
+                            <field name="image" widget="image" options="{'size': [200, 200]}"/>
+                            <group>
+                            <field name="name" style="font-size:20pt;"/>
+                            <field name="item"/>
+                            <field name="category_id"/>
+                        </group>
+                        <group>
+                            <field name="price"/>
+                            <field name="description"/>
+                        </group>
+                    </group>
+                </sheet>
+                <footer>
+                   <button string="Add to list" action="add_to_list" type="object" class="btn-primary"/>
+                   <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="hotel_food_items" model="ir.actions.act_window">
+        <field name="name">Food Items</field>
+        <field name="res_model">hotel.food.items</field>
+        <field name="view_mode">kanban,form,list</field>
+    </record>
+</odoo>

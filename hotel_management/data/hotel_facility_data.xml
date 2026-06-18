@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record id="facility_1" model="hotel.facility">
+            <field name="name">New</field>
+        </record>
+
+        <record id="facility_2" model="hotel.facility">
+            <field name="name">Rizz</field>
+        </record>
+
+        <record id="facility_3" model="hotel.facility">
+            <field name="name">Astetic</field>
+        </record>
+
+        <record id="facility_4" model="hotel.facility">
+            <field name="name">Simple</field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="product_1" model="product.product">
+            <field name="name">Cafe</field>
+        </record>
+
+        <record id="product_2" model="product.product">
+            <field name="name">Rent</field>
+        </record>
+    </data>
+</odoo>
