@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="price_list_form_view" model="ir.ui.view">
+        <field name="name">Price List</field>
+        <field name="model">price.list</field>
+        <field name="arch" type="xml">
+            <list string="List">
+                <field name="country"/>
+                <field name="price_list_id"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="price_list" model="ir.actions.act_window">
+        <field name="name">Price List</field>
+        <field name="res_model">price.list</field>
+        <field name="views">form,list</field>
+        <field name="view_mode">list,kanban,form</field>
+    </record>
+
+</odoo>
