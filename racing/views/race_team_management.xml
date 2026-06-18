@@ -1,0 +1,88 @@
+<odoo>
+    <record id="race_team_management_action" model="ir.actions.act_window">
+        <field name="name">Gran Turismo</field>
+        <field name="res_model">race.team.management</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <record id="race_events" model="ir.actions.act_window">
+        <field name="name">All Events</field>
+        <field name="res_model">event.event</field>
+        <field name="view_mode">kanban,calendar,list,form</field>
+    </record>
+
+    <record id="race_events_view" model="ir.ui.view">
+        <field name="name">All Events</field>
+        <field name="model">event.event</field>
+        <field name="inherit_id" ref="event.view_event_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='event_url']" position="after">
+                <field name="internal_notes"/>
+            </xpath>
+            <xpath expr="//field[@name='address_id']" position="attributes">
+                <attribute name="readonly">1</attribute>
+            </xpath>
+        </field>
+    </record>
+
+   <record id="event.event_main_menu" model="ir.ui.menu">
+       <field name="name">New Events</field>
+   </record>
+
+    <record id="race_employee_action" model="ir.actions.act_window">
+        <field name="name">Employees</field>
+        <field name="res_model">hr.employee</field>
+        <field name="view_mode">kanban,list,form</field>
+    </record>
+
+    <record id="race_inventory_action" model="ir.actions.act_window">
+        <field name="name">Inventory</field>
+        <field name="res_model">stock.warehouse.orderpoint</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <record id="race_product_action" model="ir.actions.act_window">
+        <field name="name">Product</field>
+        <field name="res_model">product.template</field>
+        <field name="view_mode">kanban,list,form</field>
+    </record>
+
+    <record id="race_employee_skill" model="ir.actions.act_window">
+        <field name="name">Skill</field>
+        <field name="res_model">hr.skill.type</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <record id="race_discussion" model="ir.actions.act_window">
+        <field name="name">Discussion</field>
+        <field name="res_model">discuss.channel</field>
+        <field name="view_mode">kanban,list,form</field>
+    </record>
+
+    <record id="race_department" model="ir.actions.act_window">
+        <field name="name">Departments</field>
+        <field name="res_model">hr.department</field>
+        <field name="view_mode">kanban,list,hierarchy</field>
+    </record>
+
+    <menuitem id="race_team_management_root" name="Racing">
+        <menuitem id="race_first_level_menu" name="Race">
+            <menuitem id="race_menu_action" name="Race" action="race_team_management_action"/>
+        </menuitem>
+        <menuitem id="race_events_menu" name="Events">
+            <menuitem id="race_event_menu_action" name="Events" action="race_events"/>
+        </menuitem>
+        <menuitem id="race_employees_menu" name="Employees">
+            <menuitem id="race_employees_menu_action" name="Employees" action="race_employee_action"/>
+            <menuitem id="race_employee_skill_menu_actoin" name="Skill" action="race_employee_skill"/>
+            <menuitem id="race_department_menu_action" name="Department" action="race_department"/>
+        </menuitem>
+        <menuitem id="race_inventory_menu" name="Inventory">
+            <menuitem id="race_inventory_menu_action" name="Replenish" action="race_inventory_action"/>
+            <menuitem id="race_product_menu_action" name="Products" action="race_product_action"/>
+        </menuitem>
+        <menuitem id="race_discussion_menu" name="Pit-Wall">
+            <menuitem id="race_discussion_menu_action" name="Discussions" action="race_discussion"/>
+        </menuitem>
+    </menuitem>
+</odoo>
